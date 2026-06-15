@@ -1,8 +1,8 @@
-# Seedance 2.0 ComfyUI Nodes
+# Seedance 2.0 & Seedance 2 Mini ComfyUI Nodes
 
-> **ComfyUI custom nodes for Seedance 2.0** — the state-of-the-art video generation model by ByteDance.
-> Generate stunning AI videos directly inside ComfyUI using the [muapi.ai](https://muapi.ai) API.
-> If you wish to check the api documentation check this [Seedance 2.0 api](https://github.com/Anil-matcha/Seedance-2.0-API)
+> **ComfyUI custom nodes for Seedance 2.0 and Seedance 2 Mini** — ByteDance's state-of-the-art video generation models.
+> Generate stunning AI videos directly inside ComfyUI using the [muapi.ai](https://muapi.ai) API. Use Seedance 2.0 for maximum quality, or **Seedance 2 Mini** for fast, affordable generation at ~$0.073/sec.
+> If you wish to check the API documentation check this [Seedance 2 API](https://github.com/Anil-matcha/Seedance-2-API)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![ComfyUI](https://img.shields.io/badge/ComfyUI-Custom%20Node-blue)](https://github.com/comfyanonymous/ComfyUI)
@@ -26,6 +26,7 @@ Seedance 2.0 is ByteDance's latest video generation model, capable of producing 
 - **Omni Reference** — combine images, video clips, and audio as multi-modal reference inputs
 - **Video Extend** — seamlessly extend any generated video
 - **Consistent Character** — generate a 4K multi-panel character sheet from reference photos; use `@character:<id>` inline in any prompt, or wire the sheet image directly into **Consistent Character Video** for tighter face fidelity
+- **Seedance 2 Mini** — ByteDance's lightweight model for fast, affordable generation at ~$0.073/sec; ideal for rapid iteration and high-volume workflows
 
 ---
 
@@ -41,6 +42,8 @@ Seedance 2.0 is ByteDance's latest video generation model, capable of producing 
 | 🌱 Seedance 2.0 Consistent Character Video | Animate a scene with locked character identity from a sheet |
 | 🌱 Seedance 2.0 Extend | Extend a previously generated video |
 | 🌱 Seedance 2.0 Save Video | Download URL → disk + ComfyUI IMAGE frames |
+| ⚡ Seedance 2 Mini Text-to-Video | Fast, affordable T2V at ~$0.073/sec — great for rapid iteration |
+| ⚡ Seedance 2 Mini Image-to-Video | Fast, affordable I2V — ideal for bulk ComfyUI workflows |
 
 ---
 
@@ -242,6 +245,8 @@ This node pack uses the **muapi.ai** API under the hood:
 - **Omni:** `POST https://api.muapi.ai/api/v1/seedance-2.0-omni-reference`
 - **Character:** `POST https://api.muapi.ai/api/v1/seedance-2-character`
 - **Extend:** `POST https://api.muapi.ai/api/v1/seedance-v2.0-extend`
+- **Seedance 2 Mini T2V:** `POST https://api.muapi.ai/api/v1/seedance-2-mini-t2v`
+- **Seedance 2 Mini I2V:** `POST https://api.muapi.ai/api/v1/seedance-2-mini-i2v`
 - **Poll:** `GET https://api.muapi.ai/api/v1/predictions/{id}/result`
 - **Upload:** `POST https://api.muapi.ai/api/v1/upload_file`
 
