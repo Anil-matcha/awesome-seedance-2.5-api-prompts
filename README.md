@@ -466,6 +466,10 @@ clothing, smooth 24fps motion, rhythmic bass-driven audio sync, 9:16 vertical.
 
 - [Seedance Official (ByteDance)](https://seed.bytedance.com/en/seedance2_0)
 - [MuAPI — Seedance 2.5 API Access](https://muapi.ai?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
+- **Muapi Playgrounds:**
+  - Seedance 2.5 *(coming soon)*: [I2V](https://muapi.ai/playground/seedance-2.5-image-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [T2V](https://muapi.ai/playground/seedance-2.5-text-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
+  - Seedance 2.1 *(coming soon)*: [I2V](https://muapi.ai/playground/seedance-2.1-image-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [T2V](https://muapi.ai/playground/seedance-2.1-text-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
+  - Seedance 2.0 Mini *(coming soon)*: [I2V](https://muapi.ai/playground/seedance-2.0-mini-image-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [T2V](https://muapi.ai/playground/seedance-2.0-mini-text-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
 - [Seedance 2.5 Release Notes](https://www.openpr.com/news/4555789/seedance-2-5-released-next-level-multi-shot-ai-video)
 - [Seedance Prompt Guide by invideo.io](https://invideo.io/blog/seedance-2-0-prompt-guide/)
 - [BytePlus ModelArk Docs](https://docs.byteplus.com/en/docs/ModelArk)
