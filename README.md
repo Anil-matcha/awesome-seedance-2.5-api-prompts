@@ -1,6 +1,6 @@
 # 🎬 Awesome Seedance 2.5 — API, Prompts & Complete Guide
 
-> The ultimate resource for Seedance 2.5 — ByteDance's next-gen AI video generation model. Covers API integration, prompt engineering, camera controls, multimodal workflows, and 24+ curated production-ready prompt examples.
+> The ultimate resource for Seedance 2.5 — ByteDance's next-gen AI video generation model. Covers API integration, prompt engineering, camera controls, multimodal workflows, and 30+ curated production-ready prompt examples.
 
 [![Seedance 2.5](https://img.shields.io/badge/Seedance-2.5-blue)](https://seed.bytedance.com)
 [![Powered by MuAPI](https://img.shields.io/badge/Powered%20by-MuAPI-6366f1?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyem0tMSAxNHYtNGgtMnYtMmg0djZoLTJ6bTAtOFY2aDJ2MmgtMnoiLz48L3N2Zz4=)](https://muapi.ai?utm_source=github&utm_medium=badge&utm_campaign=awesome-seedance-2.5)
@@ -63,9 +63,14 @@
   - [📱 Social Media / UGC Templates](#-social-media--ugc-templates)
   - [🌸 Anime & Stylized Templates](#-anime--stylized-templates)
   - [🏎️ Multi-Shot Sequence Templates](#️-multi-shot-sequence-templates)
+  - [🛍️ E-Commerce & Product Display](#️-e-commerce--product-display)
+  - [🍽️ Food & Beverage](#️-food--beverage)
+  - [💄 Beauty & Fashion Close-Ups](#-beauty--fashion-close-ups)
+- [Browse Prompts by Category](#browse-prompts-by-category)
 - [Advanced Workflows](#advanced-workflows)
 - [Tips & Best Practices](#tips--best-practices)
 - [API Providers Comparison](#api-providers-comparison)
+- [FAQ](#faq)
 - [Resources & Links](#resources--links)
 
 ---
@@ -822,6 +827,103 @@ Style: Inspirational brand film, Hans Zimmer-style score, no dialogue.
 
 ---
 
+### 🛍️ E-Commerce & Product Display
+
+Seedance 2.5's multi-image reference input and 30s duration make it well suited to product-detail and livestream-style commerce clips — the format most storefronts need but rarely have footage for.
+
+#### 25. Garment On-Body Turn Display
+
+> Requires 1 reference image (`@image1`)
+
+```
+Studio product video for an online storefront. A model wears the garment shown in @image1 and performs a slow 360-degree turn under soft, even three-point lighting against a seamless neutral backdrop. Camera holds a static medium shot at chest height. Fabric drape, seam detail, and stitching should read clearly as the model turns. Close on sleeve cuff and hem texture for 2 seconds at the 20s mark before returning to the full turn. No music, subtle rustle of fabric only.
+```
+
+- **Best for:** I2V — 20–30s, 1 product reference image
+- **Aspect Ratio:** 9:16 (mobile storefront) or 1:1 (marketplace grid)
+
+---
+
+#### 26. Jewelry Macro Light-Catch
+
+> Requires 1 reference image (`@image1`)
+
+```
+Macro product shot of the ring/necklace in @image1 rotating slowly on an invisible turntable against a black-to-charcoal gradient background. A single moving key light sweeps across the piece so facets and metal catch and release specular highlights in sequence. Shallow depth of field, rack focus from setting to stone. End on a static hero frame with the full piece in crisp focus, ready for a price/logo overlay.
+```
+
+- **Best for:** I2V — 10–15s, 1 product reference image
+- **Aspect Ratio:** 1:1
+
+---
+
+### 🍽️ Food & Beverage
+
+#### 27. Latte Art Pour Close-Up
+
+```
+Overhead-to-side transition shot in a bright cafe. Steamed milk pours in a thin ribbon into a cup of espresso, forming a rosette latte-art pattern in real time. Camera starts top-down on the cup, then tilts to a 45-degree angle as the barista sets it on a wooden counter. Warm morning light, shallow depth of field, gentle steam rising, no dialogue, ambient cafe sound only.
+```
+
+- **Best for:** T2V — 8–12s
+- **Aspect Ratio:** 1:1
+
+---
+
+#### 28. Molten Dessert Reveal
+
+```
+Macro close-up of a chocolate lava cake being cut open with a spoon on a dark ceramic plate. Warm molten chocolate slowly flows out and pools around the base as steam rises. Camera holds static, then slowly pushes in as the flow reaches its peak. Rich, warm restaurant lighting with a soft highlight on the glossy chocolate surface, no text, no dialogue, subtle ambient clink of cutlery.
+```
+
+- **Best for:** T2V — 8–10s
+- **Aspect Ratio:** 4:3
+
+---
+
+### 💄 Beauty & Fashion Close-Ups
+
+#### 29. Skincare Serum Drop
+
+> Requires 1 reference image (`@image1`)
+
+```
+Macro beauty shot of the serum bottle from @image1. A single drop of translucent serum falls in slow motion onto a wet, dewy skin surface, rippling outward on impact. Cool, clean studio lighting with soft rim light on the bottle in the background. Camera holds still on the point of impact, shallow depth of field, no dialogue, minimal ambient sound.
+```
+
+- **Best for:** I2V — 6–10s
+- **Aspect Ratio:** 1:1
+
+---
+
+#### 30. Lipstick Swatch Macro
+
+```
+Macro shot of a lipstick bullet swatching color onto the back of a hand against a clean white background. The camera tracks slowly along the swatch line as it's drawn, capturing texture, pigment saturation, and slight sheen. Bright, even beauty lighting, no shadows on the swatch. Ends on a static close-up of the lipstick bullet and the finished swatch in frame together.
+```
+
+- **Best for:** T2V — 6–8s
+- **Aspect Ratio:** 1:1
+
+---
+
+## Browse Prompts by Category
+
+| Category | Prompts | Best Mode |
+|---|---|---|
+| Cinematic / Featured | 1–3, 9–12 | T2V / I2V |
+| Visual Effects & Typography | 4 | T2V |
+| Fashion & Lifestyle | 5, 8 | T2V |
+| Nature & Documentary | 6, 7 | T2V |
+| Sci-Fi & Concept Film | 10, 11 | T2V |
+| Multi-Reference Generation | 13, 17–21 | I2V |
+| Video Editing & Compositing | 22–24 | V2V |
+| E-Commerce & Product Display | 25, 26 | I2V |
+| Food & Beverage | 27, 28 | T2V |
+| Beauty & Fashion Close-Ups | 29, 30 | T2V / I2V |
+
+---
+
 ## Advanced Workflows
 
 ### Character Consistency Across Shots
@@ -888,6 +990,28 @@ Style: [Director reference], [lighting keyword], no jump cuts.
 | Direct ByteDance | Limited access | Waitlist | Internal only | — |
 
 > MuAPI provides the simplest path to production — one API key, one base URL, unified billing.
+
+---
+
+## FAQ
+
+**Does Seedance 2.5 generate audio automatically?**
+Yes — by default it generates synchronized voice, sound effects, and music from the prompt and visuals. Set `generate_audio: false` (native API) for a silent clip.
+
+**Why isn't 1080p/4K available yet?**
+Seedance 2.5 launched with 480p/720p output. Higher resolutions are planned but not yet enabled across providers — treat any 1080p/4K claim as roadmap, not a guaranteed current parameter.
+
+**How many reference images/videos/audio clips can I use?**
+Up to 30 reference images, 10 reference video clips (30s combined), and 10 reference audio clips (30s combined) per request — a large jump from Seedance 2.0's limits. Actual limits can vary slightly by provider.
+
+**Should I use MP4 or MOV output?**
+Use MP4 (default) for a single final render. Use MOV (`yuv444p`) as both input and output when you plan to chain multiple video-extension or editing passes — it avoids the color-fidelity loss that compounds across generations.
+
+**My multi-shot prompt isn't following the timecodes precisely — why?**
+Timecode adherence improves with shorter, clearer per-shot descriptions and a consistent style line at the end. Avoid packing more than 4–6 shots into a single 30s script.
+
+**Can I keep a character consistent without training a LoRA?**
+Yes — pass a clear reference image via `@image1` and repeat the same physical description across every shot/extension. This is the fastest path to consistency without any training step; see [Advanced Workflows](#advanced-workflows).
 
 ---
 
