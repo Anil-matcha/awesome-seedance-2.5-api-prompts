@@ -40,6 +40,7 @@
 - [API Reference (MuAPI)](#api-reference-muapi)
   - [Text-to-Video](#1-seedance-25-text-to-video-t2v)
   - [Image-to-Video](#2-seedance-25-image-to-video-i2v)
+  - [Spicy (T2V / I2V)](#2b-seedance-25-spicy-t2v--i2v)
   - [First & Last Frame](#3-seedance-25-first--last-frame)
   - [Omni Reference](#4-seedance-25-omni-reference)
   - [Polling for Results](#polling-for-results)
@@ -158,6 +159,7 @@ Base URL: https://api.muapi.ai/api/v1
 
 **Endpoint:** `POST https://api.muapi.ai/api/v1/seedance-2.5-text-to-video` ($0.60/sec, 720p)
 **480p tier:** `POST https://api.muapi.ai/api/v1/seedance-2.5-text-to-video-480p` ($0.30/sec)
+**Playground:** [720p](https://muapi.ai/playground/seedance-2.5-text-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [480p](https://muapi.ai/playground/seedance-2.5-text-to-video-480p?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
 
 ```bash
 curl --location --request POST "https://api.muapi.ai/api/v1/seedance-2.5-text-to-video" \
@@ -192,6 +194,7 @@ request_id = response.json()["request_id"]
 
 **Endpoint:** `POST https://api.muapi.ai/api/v1/seedance-2.5-image-to-video` ($0.60/sec, 720p)
 **480p tier:** `POST https://api.muapi.ai/api/v1/seedance-2.5-image-to-video-480p` ($0.30/sec)
+**Playground:** [720p](https://muapi.ai/playground/seedance-2.5-image-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [480p](https://muapi.ai/playground/seedance-2.5-image-to-video-480p?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
 
 This endpoint takes a single `image_url` (not a list) plus a `prompt`.
 
@@ -224,10 +227,31 @@ request_id = response.json()["request_id"]
 
 ---
 
+### 2b. Seedance 2.5 Spicy (T2V / I2V)
+
+**Endpoints:** `POST https://api.muapi.ai/api/v1/seedance-2.5-spicy-text-to-video` · `POST https://api.muapi.ai/api/v1/seedance-2.5-spicy-image-to-video` ($0.60/sec, 720p only — no 480p tier)
+**Playground:** [T2V](https://muapi.ai/playground/seedance-2.5-spicy-text-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [I2V](https://muapi.ai/playground/seedance-2.5-spicy-image-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
+
+Relaxed-moderation siblings of the flagship T2V/I2V models. Same request shape and pricing as the standard 720p tier, with a more permissive content policy.
+
+```bash
+curl --location --request POST "https://api.muapi.ai/api/v1/seedance-2.5-spicy-text-to-video" \
+  --header "Content-Type: application/json" \
+  --header "x-api-key: YOUR_API_KEY" \
+  --data-raw '{
+      "prompt": "A dramatic, high-contrast noir scene, bold lighting, cinematic",
+      "aspect_ratio": "16:9",
+      "duration": 8
+  }'
+```
+
+---
+
 ### 3. Seedance 2.5 First & Last Frame
 
 **Endpoint:** `POST https://api.muapi.ai/api/v1/seedance-2.5-first-last-frame` ($0.60/sec, 720p)
 **480p tier:** `POST https://api.muapi.ai/api/v1/seedance-2.5-first-last-frame-480p` ($0.30/sec)
+**Playground:** [720p](https://muapi.ai/playground/seedance-2.5-first-last-frame?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [480p](https://muapi.ai/playground/seedance-2.5-first-last-frame-480p?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
 
 Generates a smooth keyframe-driven transition between a start and end image. Pass `images_list` as exactly `[first_frame_url, last_frame_url]`.
 
@@ -249,6 +273,7 @@ curl --location --request POST "https://api.muapi.ai/api/v1/seedance-2.5-first-l
 
 **Endpoint:** `POST https://api.muapi.ai/api/v1/seedance-2.5-omni-reference` ($0.72/sec, 720p)
 **480p tier:** `POST https://api.muapi.ai/api/v1/seedance-2.5-omni-reference-480p` ($0.36/sec)
+**Playground:** [720p](https://muapi.ai/playground/seedance-2.5-omni-reference?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [480p](https://muapi.ai/playground/seedance-2.5-omni-reference-480p?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
 
 Blends up to 20 reference images, 6 reference video clips, and 6 reference audio files into one guided generation — use images for environment/style, videos for camera motion and rhythm, audio for mood.
 
@@ -1049,7 +1074,10 @@ Yes — pass a clear reference image via `@image1` and repeat the same physical 
 - [Seedance Official (ByteDance)](https://seed.bytedance.com/en/seedance2_0)
 - [MuAPI — Seedance 2.5 API Access](https://muapi.ai?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
 - **MuAPI Playgrounds:**
-  - Seedance 2.5: [I2V](https://muapi.ai/playground/seedance-2.5-image-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [T2V](https://muapi.ai/playground/seedance-2.5-text-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
+  - Seedance 2.5 Text-to-Video: [720p](https://muapi.ai/playground/seedance-2.5-text-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [480p](https://muapi.ai/playground/seedance-2.5-text-to-video-480p?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [Spicy](https://muapi.ai/playground/seedance-2.5-spicy-text-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
+  - Seedance 2.5 Image-to-Video: [720p](https://muapi.ai/playground/seedance-2.5-image-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [480p](https://muapi.ai/playground/seedance-2.5-image-to-video-480p?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [Spicy](https://muapi.ai/playground/seedance-2.5-spicy-image-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
+  - Seedance 2.5 First & Last Frame: [720p](https://muapi.ai/playground/seedance-2.5-first-last-frame?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [480p](https://muapi.ai/playground/seedance-2.5-first-last-frame-480p?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
+  - Seedance 2.5 Omni Reference: [720p](https://muapi.ai/playground/seedance-2.5-omni-reference?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [480p](https://muapi.ai/playground/seedance-2.5-omni-reference-480p?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
   - Seedance 2.1: [I2V](https://muapi.ai/playground/seedance-2.1-image-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [T2V](https://muapi.ai/playground/seedance-2.1-text-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
   - Seedance 2.0 Mini: [I2V](https://muapi.ai/playground/seedance-2.0-mini-image-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5) · [T2V](https://muapi.ai/playground/seedance-2.0-mini-text-to-video?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
 - [Seedance 2.5 Release Notes](https://www.openpr.com/news/4555789/seedance-2-5-released-next-level-multi-shot-ai-video)
