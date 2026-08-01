@@ -40,7 +40,8 @@
 - [API Reference (MuAPI)](#api-reference-muapi)
   - [Text-to-Video](#1-seedance-25-text-to-video-t2v)
   - [Image-to-Video](#2-seedance-25-image-to-video-i2v)
-  - [Video Extension](#3-seedance-25-video-extension)
+  - [First & Last Frame](#3-seedance-25-first--last-frame)
+  - [Omni Reference](#4-seedance-25-omni-reference)
   - [Polling for Results](#polling-for-results)
   - [Parameters](#muapi-parameters)
 - [Prompt Engineering Guide](#prompt-engineering-guide)
@@ -85,7 +86,7 @@
 - **Director-grade camera control** — precise rack focus, crane shots, whip pans, and more
 - **Native audio synchronization** — tighter lip-sync and sound design baked in at generation time
 - **Better physics & motion stability** — realistic fluid dynamics, cloth simulation, and crowd motion
-- **Rich multimodal references** — guide generations with up to 30 images, 10 reference video clips, and 10 reference audio clips per request
+- **Rich multimodal references** — guide generations with up to 20 images, 6 reference video clips, and 6 reference audio clips per request (Omni Reference endpoint)
 - **Controllable video editing** — adjust backgrounds, replace products, change models, or refine local details while preserving the larger shot
 - **Sharper long-clip quality** — noticeably less blur build-up even after 3 consecutive video extensions
 - **Better instruction following** — more accurate on negative prompts (e.g. "no subtitles / no bgm"), timestamp-based shot instructions, and multi-language prompts
@@ -108,9 +109,9 @@ Seedance 2.5 accepts **text, images, video clips, and audio** as input and outpu
 | Max resolution (launch) | 480p / 720p | 480p / 720p (1080p & 4K planned, not yet enabled) |
 | Max duration | 15s | 30s native single clip |
 | Video editing | Not supported | Background swap, object removal, style transfer |
-| Reference images | Up to 9 | Up to 30 |
-| Reference video clips | Up to 3 (15s total) | Up to 10 (30s total) |
-| Reference audio clips | Up to 3 (15s total) | Up to 10 (30s total) |
+| Reference images | Up to 9 | Up to 20 (Omni Reference) |
+| Reference video clips | Up to 3 (15s total) | Up to 6 (Omni Reference) |
+| Reference audio clips | Up to 3 (15s total) | Up to 6 (Omni Reference) |
 | Output container | MP4 only | MP4 (default) or MOV (yuv444p, high color-fidelity) |
 
 ---
@@ -126,9 +127,9 @@ Seedance 2.5 accepts **text, images, video clips, and audio** as input and outpu
 - **Video Editing** — inpaint, remove objects, transfer styles while preserving composition
 
 ### Supported Input Formats
-- Images: JPEG, PNG, WebP, BMP, TIFF, GIF, HEIC/HEIF (up to 30 images per request)
-- Video: MP4, MOV, 480p–4K source resolution (up to 10 reference clips, 2–30s each, 30s combined total)
-- Audio: WAV, MP3 (up to 10 reference clips, 2–30s each, 30s combined total)
+- Images: JPEG, PNG, WebP, BMP, TIFF, GIF, HEIC/HEIF (up to 20 images per request via Omni Reference)
+- Video: MP4, MOV, 480p–4K source resolution (up to 6 reference clips via Omni Reference)
+- Audio: WAV, MP3 (up to 6 reference clips via Omni Reference)
 
 ### Output Specs
 - Resolutions: 480p, 720p at launch (1080p and 4K planned, not yet enabled)
@@ -144,6 +145,8 @@ The fastest way to access Seedance 2.5 via API is through **[MuAPI](https://muap
 
 **Get your API key:** [muapi.ai](https://muapi.ai?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
 
+Seedance 2.5 is an early-access build on MuAPI, gated to Pro/Business plan accounts. It ships as 8 endpoints — a 720p and 480p tier for each of Text-to-Video, Image-to-Video, First & Last Frame, and Omni Reference.
+
 ```bash
 x-api-key: YOUR_MUAPI_KEY
 Base URL: https://api.muapi.ai/api/v1
@@ -153,17 +156,17 @@ Base URL: https://api.muapi.ai/api/v1
 
 ### 1. Seedance 2.5 Text-to-Video (T2V)
 
-**Endpoint:** `POST https://api.muapi.ai/api/v1/seedance-2.5-t2v`
+**Endpoint:** `POST https://api.muapi.ai/api/v1/seedance-2.5-text-to-video` ($0.60/sec, 720p)
+**480p tier:** `POST https://api.muapi.ai/api/v1/seedance-2.5-text-to-video-480p` ($0.30/sec)
 
 ```bash
-curl --location --request POST "https://api.muapi.ai/api/v1/seedance-2.5-t2v" \
+curl --location --request POST "https://api.muapi.ai/api/v1/seedance-2.5-text-to-video" \
   --header "Content-Type: application/json" \
   --header "x-api-key: YOUR_API_KEY" \
   --data-raw '{
       "prompt": "A lone astronaut walks across a red Martian desert at golden hour, wide angle, cinematic",
       "aspect_ratio": "16:9",
-      "duration": 10,
-      "quality": "high"
+      "duration": 10
   }'
 ```
 
@@ -172,13 +175,12 @@ curl --location --request POST "https://api.muapi.ai/api/v1/seedance-2.5-t2v" \
 import requests
 
 response = requests.post(
-    "https://api.muapi.ai/api/v1/seedance-2.5-t2v",
+    "https://api.muapi.ai/api/v1/seedance-2.5-text-to-video",
     headers={"x-api-key": "YOUR_API_KEY", "Content-Type": "application/json"},
     json={
         "prompt": "A lone astronaut walks across a red Martian desert at golden hour, wide angle, cinematic",
         "aspect_ratio": "16:9",
-        "duration": 10,
-        "quality": "high"
+        "duration": 10
     }
 )
 request_id = response.json()["request_id"]
@@ -188,34 +190,33 @@ request_id = response.json()["request_id"]
 
 ### 2. Seedance 2.5 Image-to-Video (I2V)
 
-**Endpoint:** `POST https://api.muapi.ai/api/v1/seedance-2.5-i2v`
+**Endpoint:** `POST https://api.muapi.ai/api/v1/seedance-2.5-image-to-video` ($0.60/sec, 720p)
+**480p tier:** `POST https://api.muapi.ai/api/v1/seedance-2.5-image-to-video-480p` ($0.30/sec)
 
-Reference input images in your prompt using `@image1`, `@image2`, etc.
+This endpoint takes a single `image_url` (not a list) plus a `prompt`.
 
 ```bash
-curl --location --request POST "https://api.muapi.ai/api/v1/seedance-2.5-i2v" \
+curl --location --request POST "https://api.muapi.ai/api/v1/seedance-2.5-image-to-video" \
   --header "Content-Type: application/json" \
   --header "x-api-key: YOUR_API_KEY" \
   --data-raw '{
-      "prompt": "@image1 — the camera slowly pushes in as she turns to face us, hair blowing in the wind",
-      "images_list": ["https://example.com/photo.jpg"],
+      "prompt": "The camera slowly pushes in as she turns to face us, hair blowing in the wind",
+      "image_url": "https://example.com/photo.jpg",
       "aspect_ratio": "16:9",
-      "duration": 8,
-      "quality": "high"
+      "duration": 8
   }'
 ```
 
 **Python:**
 ```python
 response = requests.post(
-    "https://api.muapi.ai/api/v1/seedance-2.5-i2v",
+    "https://api.muapi.ai/api/v1/seedance-2.5-image-to-video",
     headers={"x-api-key": "YOUR_API_KEY", "Content-Type": "application/json"},
     json={
-        "prompt": "@image1 — the camera slowly pushes in as she turns to face us, hair blowing in the wind",
-        "images_list": ["https://example.com/photo.jpg"],
+        "prompt": "The camera slowly pushes in as she turns to face us, hair blowing in the wind",
+        "image_url": "https://example.com/photo.jpg",
         "aspect_ratio": "16:9",
-        "duration": 8,
-        "quality": "high"
+        "duration": 8
     }
 )
 request_id = response.json()["request_id"]
@@ -223,20 +224,45 @@ request_id = response.json()["request_id"]
 
 ---
 
-### 3. Seedance 2.5 Video Extension
+### 3. Seedance 2.5 First & Last Frame
 
-**Endpoint:** `POST https://api.muapi.ai/api/v1/seedance-2.5-extend`
+**Endpoint:** `POST https://api.muapi.ai/api/v1/seedance-2.5-first-last-frame` ($0.60/sec, 720p)
+**480p tier:** `POST https://api.muapi.ai/api/v1/seedance-2.5-first-last-frame-480p` ($0.30/sec)
 
-Seamlessly extend an existing Seedance 2.5 clip while maintaining style and character consistency.
+Generates a smooth keyframe-driven transition between a start and end image. Pass `images_list` as exactly `[first_frame_url, last_frame_url]`.
 
 ```bash
-curl --location --request POST "https://api.muapi.ai/api/v1/seedance-2.5-extend" \
+curl --location --request POST "https://api.muapi.ai/api/v1/seedance-2.5-first-last-frame" \
   --header "Content-Type: application/json" \
   --header "x-api-key: YOUR_API_KEY" \
   --data-raw '{
-      "request_id": "YOUR_ORIGINAL_REQUEST_ID",
-      "prompt": "She continues walking into the foggy distance",
-      "duration": 6
+      "prompt": "Smooth cinematic transition, camera drifts forward as the scene morphs from day to night",
+      "images_list": ["https://example.com/start-frame.jpg", "https://example.com/end-frame.jpg"],
+      "aspect_ratio": "16:9",
+      "duration": 8
+  }'
+```
+
+---
+
+### 4. Seedance 2.5 Omni Reference
+
+**Endpoint:** `POST https://api.muapi.ai/api/v1/seedance-2.5-omni-reference` ($0.72/sec, 720p)
+**480p tier:** `POST https://api.muapi.ai/api/v1/seedance-2.5-omni-reference-480p` ($0.36/sec)
+
+Blends up to 20 reference images, 6 reference video clips, and 6 reference audio files into one guided generation — use images for environment/style, videos for camera motion and rhythm, audio for mood.
+
+```bash
+curl --location --request POST "https://api.muapi.ai/api/v1/seedance-2.5-omni-reference" \
+  --header "Content-Type: application/json" \
+  --header "x-api-key: YOUR_API_KEY" \
+  --data-raw '{
+      "prompt": "Blend the reference images into a neon-lit night market scene, matching the camera rhythm and mood of the reference video and audio",
+      "images_list": ["https://example.com/ref1.jpg", "https://example.com/ref2.jpg"],
+      "videos_list": ["https://example.com/ref-motion.mp4"],
+      "audios_list": ["https://example.com/ref-mood.mp3"],
+      "aspect_ratio": "16:9",
+      "duration": 10
   }'
 ```
 
@@ -273,12 +299,15 @@ print(f"Video: {video_url}")
 
 | Parameter | Type | Options | Default | Description |
 |---|---|---|---|---|
-| `prompt` | string | — | required | Text description. Use `@image1`, `@image2` to reference inputs |
-| `images_list` | array | URLs | — | Input images for I2V (up to 9) |
-| `aspect_ratio` | string | `21:9` `16:9` `4:3` `1:1` `3:4` `9:16` | `16:9` | Output aspect ratio |
-| `duration` | int | `4`–`30` | `10` | Duration in seconds |
-| `quality` | string | `basic` `high` | `basic` | `high` = 1080p priority |
-| `remove_watermark` | bool | `true` `false` | `false` | Remove MuAPI watermark |
+| `prompt` | string | — | required | Text description of the desired video |
+| `image_url` | string (URL) | — | — | Single input image — Image-to-Video endpoint only |
+| `images_list` | array (URLs) | — | — | First & Last Frame: exactly 2 URLs `[first_frame, last_frame]`. Omni Reference: up to 20 reference images |
+| `videos_list` | array (URLs) | — | — | Omni Reference only — up to 6 reference video clips |
+| `audios_list` | array (URLs) | — | — | Omni Reference only — up to 6 reference audio clips |
+| `aspect_ratio` | string | `16:9` `9:16` `1:1` `4:3` `3:4` `21:9` `9:21` | `16:9` | Output aspect ratio |
+| `duration` | int | `4`–`30` | `5` | Duration in seconds |
+| `seed` | int | `-1`–`4294967295` | random | Reproducible generation seed (`-1` = random) |
+| `webhook_url` | string (URL) | — | — | Optional webhook to notify on completion |
 
 > **Playground:** [muapi.ai/playground](https://muapi.ai?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)
 
@@ -311,7 +340,7 @@ If you're calling Seedance 2.5 directly rather than through MuAPI's simplified s
 | `output_format` | string | `mp4` (default, standard color) or `mov` (yuv444p/yuv444p10le, best for extend/edit chains — recommend using `mov` for both input and output when extending a clip repeatedly). |
 | `bitrate_mode` | string | `standard` (CRF 18) or `high` (CRF 11, 3–5× larger file, more detail). Default `high` for Seedance 2.5. |
 | `camera_fixed` | bool | `true` biases the model toward a locked-off camera. Default `false`. |
-| `generate_audio` | bool | `true` (default) generates synchronized voice/SFX/music from the prompt and visuals; `false` outputs a silent clip. |
+| `generate_audio` | bool | Native Volcano Ark parameter for synchronized voice/SFX/music generation; not yet confirmed available on the current MuAPI early-access endpoints. |
 | `return_last_frame` | bool | Returns the final frame as a watermark-free PNG for chaining into another generation. |
 | `watermark` | bool | Whether the output carries a visible watermark. |
 | `content.role` | string | Marks a reference asset's purpose: `first_frame`, `last_frame`, `reference_image`, `reference_video`, `reference_audio`. |
@@ -387,7 +416,7 @@ Use these exact terms in your prompts for precise camera control:
 
 ### Multimodal Reference Syntax
 
-When passing images, videos, or audio alongside your prompt, reference them with `@Tags`:
+`@Tags` are a prompt-writing convention, not a literal API field — the actual request just sends `images_list` / `videos_list` / `audios_list` (see [MuAPI Parameters](#muapi-parameters)) alongside a `prompt` that references them in order. Referencing assets by position in your prose (`@Image1`, `@Video1`, `@Audio1`) helps the model map each reference to the right role:
 
 ```
 @Image1 — reference a still image input
@@ -996,13 +1025,13 @@ Style: [Director reference], [lighting keyword], no jump cuts.
 ## FAQ
 
 **Does Seedance 2.5 generate audio automatically?**
-Yes — by default it generates synchronized voice, sound effects, and music from the prompt and visuals. Set `generate_audio: false` (native API) for a silent clip.
+Audio synthesis is a native Volcano Ark/BytePlus capability but is not yet confirmed as enabled on the current 480p/720p early-access endpoints — don't rely on synchronized audio output until a provider explicitly documents it for Seedance 2.5.
 
 **Why isn't 1080p/4K available yet?**
-Seedance 2.5 launched with 480p/720p output. Higher resolutions are planned but not yet enabled across providers — treat any 1080p/4K claim as roadmap, not a guaranteed current parameter.
+Seedance 2.5 launched with 480p/720p output only, via 8 endpoints (Text-to-Video, Image-to-Video, First & Last Frame, Omni Reference — each with a 720p and 480p tier). Higher resolutions are planned but not yet enabled — treat any 1080p/4K claim as roadmap, not a guaranteed current parameter.
 
 **How many reference images/videos/audio clips can I use?**
-Up to 30 reference images, 10 reference video clips (30s combined), and 10 reference audio clips (30s combined) per request — a large jump from Seedance 2.0's limits. Actual limits can vary slightly by provider.
+The Omni Reference endpoint accepts up to 20 reference images, 6 reference video clips, and 6 reference audio clips per request. The Image-to-Video endpoint takes a single input image; the First & Last Frame endpoint takes exactly two (start + end).
 
 **Should I use MP4 or MOV output?**
 Use MP4 (default) for a single final render. Use MOV (`yuv444p`) as both input and output when you plan to chain multiple video-extension or editing passes — it avoids the color-fidelity loss that compounds across generations.
