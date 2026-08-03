@@ -28,6 +28,8 @@
 - [seedance-2.0-watermark-remover](https://github.com/SamurAIGPT/seedance-2.0-watermark-remover) — Remove watermarks from Seedance generated videos
 - [seedance-2-generator](https://github.com/SamurAIGPT/seedance-2-generator) — Ready-made Next.js SaaS built on Seedance 2
 - [ai-creator-academy](https://github.com/Anil-matcha/ai-creator-academy) — free curriculum teaching creators how to monetize Seedance and other generative AI models
+- [seedance-2-mcp](https://github.com/Anil-matcha/seedance-2-mcp) — Focused MCP server for Seedance 2 generation from AI assistants
+- [seedance-2.5-mcp](https://github.com/Anil-matcha/seedance-2.5-mcp) — Focused MCP server for Seedance 2.5 Preview generation with 720p/480p selection
 
 ---
 - [awesome-flux-3-api-prompts](https://github.com/Anil-matcha/awesome-flux-3-api-prompts) — FLUX 3 API guide, prompts, and parameters
