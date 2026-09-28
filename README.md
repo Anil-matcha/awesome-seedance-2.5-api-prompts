@@ -20,6 +20,7 @@
 ## Related Projects
 
 - [Seedance-2.5-API](https://github.com/SamurAIGPT/Seedance-2.5-API) — Python wrapper for all Seedance 2.5 route families — text-to-video, image-to-video, references, edit, extend, and character consistency
+- [Seedance-2.5-Spicy-API](https://github.com/Anil-matcha/Seedance-2.5-Spicy-API) — Python SDK and MCP server for the relaxed-moderation Seedance 2.5 Spicy tier.
 
 - [Seedance-2-API](https://github.com/Anil-matcha/Seedance-2-API) — Python SDK for Seedance 2.x API — text-to-video, image-to-video, character consistency
 - [Seedance-3-API](https://github.com/Anil-matcha/Seedance-3-API) — companion API project for the next Seedance generation.
