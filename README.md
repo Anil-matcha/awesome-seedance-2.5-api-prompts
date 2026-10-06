@@ -24,6 +24,7 @@
 
 - [Seedance-2-API](https://github.com/Anil-matcha/Seedance-2-API) — Python SDK for Seedance 2.x API — text-to-video, image-to-video, character consistency
 - [Seedance-3-API](https://github.com/Anil-matcha/Seedance-3-API) — companion API project for the next Seedance generation.
+- [awesome-seedance-3-api-prompts](https://github.com/SamurAIGPT/awesome-seedance-3-api-prompts) — Seedance 3 prompt library and API integration status.
 - [seedance2-comfyui](https://github.com/Anil-matcha/seedance2-comfyui) — Run Seedance 2 inside ComfyUI with custom nodes
 - [seedance2.5-comfyui](https://github.com/Anil-matcha/seedance2.5-comfyui) — Native Seedance 2.5 ComfyUI custom nodes and example workflows
 - [n8n-nodes-seedance2](https://github.com/Anil-matcha/n8n-nodes-seedance2) — Automate Seedance 2 video generation in n8n workflows
