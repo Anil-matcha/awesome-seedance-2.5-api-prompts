@@ -39,8 +39,15 @@
 - [awesome-flux-3-api-prompts](https://github.com/Anil-matcha/awesome-flux-3-api-prompts) — FLUX 3 API guide, prompts, and parameters
 - [Flux-3-Dev-API](https://github.com/Anil-matcha/Flux-3-Dev-API) — Python wrapper for Black Forest Labs' FLUX 3 (Dev variant) — text-to-image, image-to-image, text-to-video, image-to-video
 
+## Seedance 2.5 Flash API
+
+Dreamina Seedance 2.5 Flash is ByteDance's faster Seedance 2.5 tier: results close to flagship Seedance 2.5 with nearly twice the generation speed. [BytePlus announced](https://x.com/BytePlusGlobal/status/2120760891344036304) 720p text-to-video and image-to-video pricing of USD 0.152 per second (about 34% lower than Seedance 2.5) and a ModelArk API launch on November 15, 2026.
+
+Muapi's Seedance 2.5 Flash API page tracks the integration: **[muapi.ai/seedance-2.5-flash](https://muapi.ai/seedance-2.5-flash?utm_source=github&utm_medium=readme&utm_campaign=awesome-seedance-2.5)**. Flash endpoints are not live on Muapi yet; the flagship Seedance 2.5 endpoints work today with the same submit-and-poll flow, so code written now carries over by changing the endpoint name.
+
 ## Table of Contents
 
+- [Seedance 2.5 Flash API](#seedance-25-flash-api)
 - [What is Seedance 2.5?](#what-is-seedance-25)
 - [Seedance 2.5 vs 2.0 — What's New](#seedance-25-vs-20--whats-new)
 - [Capabilities](#capabilities)
